@@ -1,0 +1,90 @@
+# Lassonde Industries Inc. (TSX: LAS.A) — worked example
+# ========================================================
+# What this file is: ILLUSTRATIVE teaching inputs for the toolkit.
+# The group figures come from Lassonde's public filings (annual MD&A
+# 2025, Q3 2026 MD&A / results, acquisition press release 21 June 2024).
+# The division scenarios (2027E EBITDA) and the selected multiple range
+# are estimates built for a student case study (MIBS 2026, GMMR
+# Investment Group) — they are NOT Lassonde guidance and NOT a
+# recommendation. Verify every figure against the filings before any
+# real use. Nothing here is investment advice.
+#
+# To value another company: copy this file, replace the numbers,
+# run `python demo.py examples/your-company.yaml`.
+
+company:
+  name: "Lassonde Industries Inc."
+  ticker: "LAS.A"
+  currency: "C$"
+  share_price: 233.46          # 6 Nov 2026 close
+  shares_outstanding_m: 6.754  # Q2 2026 weighted avg, less NCIB repurchases
+  net_debt_m: 456.0             # 26 Sept 2026
+  non_controlling_interests_m: 96.3
+  ltm_ebitda_m: 366.1           # adjusted EBITDA, last 4 quarters to 26 Sept 2026
+  ltm_sales_m: 2934.0           # fiscal 2025 sales
+
+# DCF of the Summer Garden division, base year = FY2025 (reported).
+# Base-year margin is held flat — the honest default without a forecast.
+dcf:
+  base_year_sales_m: 205.5      # Summer Garden FY2025 sales, reported
+  base_year_ebitda_m: 33.9      # 2027E base case (see scenarios below)
+  sales_growth: 0.03
+  da_pct_of_sales: 0.025
+  capex_pct_of_sales: 0.025
+  nwc_pct_of_incremental_sales: 0.15
+  tax_rate: 0.25
+  wacc: 0.09
+  terminal_growth: 0.02
+  years: 5
+
+division:
+  division_name: "Summer Garden (US sauces)"
+  ebitda_m: 33.9                # 2027E base case
+  ownership_pct: 0.90           # 90%-owned US subsidiary; 10% minority holder
+  separation_pct_of_ev: 0.01
+  transaction_pct_of_ev: 0.02
+  tax_rate_on_gain: 0.25
+  tax_basis_m: 323.0            # approx. purchase price in C$
+  embedded_multiple: 5.82        # Lassonde's own EV / LTM EBITDA — set in code, kept here for clarity
+  shares_outstanding_m: 6.754
+  share_price: 233.46
+
+# 2027E EBITDA after the Q2 2026 customer loss, from reported FY2025
+# EBITDA (C$39.0m = operating profit 13.4 + D&A 25.6) less the estimated
+# earnings lost. The loss size is estimated from the C$27.4m impairment;
+# Lassonde does not disclose it. Bear starts from the H2 2025 run-rate.
+division_ebitda_scenarios:
+  bear: 21.1
+  base: 33.9
+  bull: 37.2
+
+# Trading comparables (EV / LTM EBITDA, Nov 2026): Campbell's 9.2x,
+# Conagra 8.4x, B&G Foods 8.87x. Precedents: Lassonde -> Summer Garden
+# 8.42x (9.60x incl. earn-out), B&G -> Victoria 7.78x, Campbell's ->
+# Sovos 19.8x (14.6x synergy-adjusted — a ceiling, not a comp).
+trading_multiples: [9.2, 8.4, 8.87]
+precedent_multiples: [8.42, 9.60, 7.78]
+
+selected_multiple_range:
+  label: "Selected range"
+  low: 8.5
+  high: 10.0
+  comment: "Between trading comps and precedents, below the synergy ceiling"
+
+# Capital allocation after the sale. net_proceeds_m is filled in by
+# demo.py from the divestiture result — do not type it here.
+capital_allocation:
+  net_debt_m: 456.0
+  group_ebitda_ltm_m: 366.1
+  divested_ebitda_m: 39.0        # FY2025 reported EBITDA leaving the group
+  share_price: 233.46
+  intrinsic_value_per_share: 279.75  # analyst-consensus target — a WEAK proxy, shown as such
+  shares_outstanding_m: 6.754
+
+notes:
+  - "Group figures: Lassonde annual MD&A 2025; Q3 2026 MD&A and results."
+  - "Summer Garden FY2025: sales C$205.5m, operating profit C$13.4m, D&A C$25.6m — EBITDA C$39.0m is operating profit + D&A, calculated from disclosed components."
+  - "Acquisition June 2024: US$235m for LTM EBITDA US$27.9m (8.42x); US$267.9m incl. earn-out fair value (9.60x)."
+  - "2027E scenarios and the selected 8.5x-10.0x range are case-study estimates, not Lassonde guidance."
+  - "Lassonde example inspired by a team case study (MIBS 2026, GMMR Investment Group). The code is original; no team files are included."
+  - "Not investment advice. Verify every input against the filings."

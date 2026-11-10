@@ -1,0 +1,64 @@
+# Acme Foods Inc. — small fictional example
+# ==========================================
+# Proves the toolkit is generic: same code, round numbers, no real
+# company. Run it with `python demo.py examples/acme.yaml`.
+
+company:
+  name: "Acme Foods Inc."
+  ticker: "ACME"
+  currency: "$"
+  share_price: 50.0
+  shares_outstanding_m: 10.0
+  net_debt_m: 100.0
+  non_controlling_interests_m: 0.0
+  ltm_ebitda_m: 80.0
+  ltm_sales_m: 500.0
+
+dcf:
+  base_year_sales_m: 100.0
+  base_year_ebitda_m: 20.0
+  sales_growth: 0.05
+  da_pct_of_sales: 0.025
+  capex_pct_of_sales: 0.025
+  nwc_pct_of_incremental_sales: 0.15
+  tax_rate: 0.25
+  wacc: 0.10
+  terminal_growth: 0.02
+  years: 5
+
+division:
+  division_name: "Acme Snacks"
+  ebitda_m: 20.0
+  ownership_pct: 1.0
+  separation_pct_of_ev: 0.01
+  transaction_pct_of_ev: 0.02
+  tax_rate_on_gain: 0.25
+  tax_basis_m: 150.0
+  embedded_multiple: 7.5
+  shares_outstanding_m: 10.0
+  share_price: 50.0
+
+division_ebitda_scenarios:
+  bear: 15.0
+  base: 20.0
+  bull: 25.0
+
+trading_multiples: [8.0, 9.0]
+precedent_multiples: [7.5, 9.5]
+
+selected_multiple_range:
+  label: "Selected range"
+  low: 8.0
+  high: 9.5
+  comment: "Fictional example"
+
+capital_allocation:
+  net_debt_m: 100.0
+  group_ebitda_ltm_m: 80.0
+  divested_ebitda_m: 20.0
+  share_price: 50.0
+  intrinsic_value_per_share: 60.0
+  shares_outstanding_m: 10.0
+
+notes:
+  - "Fictional company, round numbers — the toolkit, not the data, is the point."
