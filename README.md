@@ -9,7 +9,7 @@ inputs, and every number is reproducible with `python demo.py`.
 
 ## En français, en 30 secondes
 
-Tu décris une entreprise dans un petit fichier (`examples/*.yaml`) :
+On décrit une entreprise dans un petit fichier (`examples/*.yaml`) :
 son cours, ses actions, sa dette, son EBITDA. L'outil calcule :
 
 1. **Combien vaut le groupe** aujourd'hui (EV, EV/EBITDA) et quel cours
