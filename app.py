@@ -60,12 +60,14 @@ with st.sidebar:
     )
 
     st.header("DCF assumptions")
-    sales_growth = st.slider("Sales growth", 0.0, 0.10, float(base.dcf.sales_growth), 0.005, format="%.1f%%")
-    wacc = st.slider("WACC", 0.05, 0.15, float(base.dcf.wacc), 0.005, format="%.1f%%")
+    # Sliders work in percent units (0–10 = 0–10%) so the labels display
+    # correctly; the values are converted back to fractions below.
+    sales_growth = st.slider("Sales growth", 0.0, 10.0, float(base.dcf.sales_growth) * 100, 0.5, format="%.1f%%") / 100.0
+    wacc = st.slider("WACC", 5.0, 15.0, float(base.dcf.wacc) * 100, 0.5, format="%.1f%%") / 100.0
     terminal_growth = st.slider(
-        "Terminal growth", 0.0, 0.04, float(base.dcf.terminal_growth), 0.005, format="%.1f%%"
-    )
-    tax_rate = st.slider("Tax rate", 0.0, 0.40, float(base.dcf.tax_rate), 0.01, format="%.0f%%")
+        "Terminal growth", 0.0, 4.0, float(base.dcf.terminal_growth) * 100, 0.5, format="%.1f%%"
+    ) / 100.0
+    tax_rate = st.slider("Tax rate", 0.0, 40.0, float(base.dcf.tax_rate) * 100, 1.0, format="%.0f%%") / 100.0
 
     sale_multiple = None
     division_ebitda = None
@@ -183,7 +185,9 @@ growths = sorted({g for (_, g) in summary["dcf_sensitivity"]})
 waccs = sorted({w for (w, _) in summary["dcf_sensitivity"]})
 sens = pd.DataFrame(
     {
-        f"g = {g:.1%}": [summary["dcf_sensitivity"][(w, g)] for w in waccs]
+        # Round to whole C$m here: Styler.format alone did not round the
+        # displayed values in the deployed Streamlit version.
+        f"g = {g:.1%}": [round(summary["dcf_sensitivity"][(w, g)]) for w in waccs]
         for g in growths
     },
     index=[f"WACC {w:.0%}" for w in waccs],

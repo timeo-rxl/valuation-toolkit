@@ -102,6 +102,8 @@ valuation-toolkit/
 │   ├── lassonde.yaml   # Lassonde / Summer Garden (public filings + labelled estimates)
 │   └── acme.yaml       # fictional company, round numbers
 ├── demo.py             # CLI
+├── app.py              # interactive Streamlit demo
+├── requirements.txt
 └── tests/
     └── test_valuation.py   # 15 tests, anchored to the Lassonde example
 ```
