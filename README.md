@@ -7,6 +7,8 @@ No spreadsheets, no copy-paste errors: every method reads the same
 inputs, and every number is reproducible with `python demo.py`.
 15 tests, all passing.
 
+**Live demo:** https://u3udvbzzvnqcrdbjdqwamz.streamlit.app/ — change the share price, the WACC or the sale multiple and every answer recomputes.
+
 ## En français, en 30 secondes
 
 On décrit une entreprise dans un petit fichier (`examples/*.yaml`) :
